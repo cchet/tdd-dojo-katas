@@ -12,29 +12,29 @@ class ShortTermCustomerPriceStrategyTest {
     }
 
     @Nested
-    class FoodItemTest {
-        // TODO: A short term customer customer gets 10% of FOOD items gross price
+    class FoodProductTest {
+        // TODO: A short term customer customer pays the full price
 
-        // TODO: A short term customer can only buy FOOD items with count 10
+        // TODO: A short term customer can only buy FOOD products with count 10
 
-        // TODO: A short term customer can only buy 20 FOOD items
+        // TODO: A short term customer can only buy 20 FOOD products
     }
 
     @Nested
-    class ElectronicsItemTest {
-        // TODO: A short term customer gets 8% of ELECTRONICS items gross price
+    class ElectronicsProductTest {
+        // TODO: A short term customer pays the full products gross price
 
-        // TODO: A short term customer can only buy 10 ELECTRONICS items
+        // TODO: A short term customer can only buy 10 ELECTRONICS products
 
-        // TODO: A short term customer can only buy ELECTRONICS items with count 4
+        // TODO: A short term customer can only buy ELECTRONICS products with count 4
     }
 
     @Nested
     class FurnitureItemsTest {
-        // TODO: A new customer gets 5% of FURNITURE items gross price
+        // TODO: A new customer gets 5% of FURNITURE products gross price
 
-        // TODO: A new customer can only buy 4 FURNITURE items
+        // TODO: A new customer can only buy 4 FURNITURE products
 
-        // TODO: A new customer can only buy FURNITURE items with count 2
+        // TODO: A new customer can only buy FURNITURE products with count 2
     }
 }

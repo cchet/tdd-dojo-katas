@@ -1,0 +1,75 @@
+= Coding Dojo Kata's for TDD (Test-Driven-Development)
+
+This repository holds the sources for the TDD Dojo Kata's for practising TDD.
+
+== Description
+
+This application represents a simple Store where a bill can be calculated for several products.
+This application can only be executed via unit tests and does ont need any runtime environment.
+There are junit test class skeletons where the requirements are documented via Java comments.
+
+Developers need to implement the requirements with a TDD approach.
+
+The unit tests are written with `JUnit5` and can be asserted with `AssertJ`.
+
+=== Setup
+
+You will need the following tooling installed to get the project set up.
+
+* Maven 3.x
+* Java 17
+* IDE of your choice
+
+== Scenario
+
+The existing application can calculate the gross price of the Products which are provided to
+the `BillCalculator`. Now it has been decided that customers are treated differently depending
+on their loyalty to the store which is measured in days. Additionally, some constraints need to be
+implemented to several classes to make the application more resilient for invalid inputs, which
+caused problems in the past.
+
+A developer already started to implement a calculation strategy and some classes for the different
+calculations. Also test classes have been created which contain the new requirements as Java comments.
+Unfortunately, the developer has left, and now it's up to you to finish the Job.
+
+== Tasks
+
+Work through the test classes and implement the documented requirements with TDD.
+Write at least one test for each requirement and only provide the necessary new code or refactoring to satisfy
+the single requirement, even if you have to refactor your own code on the next requirement.
+
+== Recommendations
+
+Name your test methods in a way so that another developer gets a pretty good feeling about what is tested under what
+conditions.
+
+I recommend the naming scheme `then_when` e.g.:
+
+* `throwsIllegalArgumentException_whenIdIsNull`
+* `activatedNewCustomerPriceStrategy_whenCustomerIsNew`
+* `constraintViolated_whenFoodProductCountIsLargerThan300`
+
+Additionally, you can structure the test with nested classes. +
+The following code snipped shows nested test classes which would lead to an error message
+formatted as `ProductTest$CommonTest$IdTest.throwsIllegalArgumentException_whenIdIsNull`.
+
+[source,java]
+----
+class ProductTest {
+
+    @Nested
+    class CommonTest {
+
+        @Nested
+        class IdTest {
+
+            @Test
+            void throwsIllegalArgumentException_whenIdIsNull() {
+
+            }
+        }
+    }
+}
+----
+
+

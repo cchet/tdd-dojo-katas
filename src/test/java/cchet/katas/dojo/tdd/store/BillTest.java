@@ -8,6 +8,6 @@ class BillTest {
 
     // TODO: The sum must be zero is there are not successItems present
 
-    // TODO: The successItems.count + errorItems.count must be items.count
+    // TODO: The successItems.count + errorItems.count must be products.count
 
 }

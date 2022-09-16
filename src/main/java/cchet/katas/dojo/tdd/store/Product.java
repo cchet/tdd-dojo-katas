@@ -2,7 +2,7 @@ package cchet.katas.dojo.tdd.store;
 
 import java.math.BigDecimal;
 
-public class Item {
+public class Product {
 
     private final String id;
 
@@ -10,9 +10,9 @@ public class Item {
 
     private final BigDecimal price;
 
-    private final ItemType type;
+    private final ProductType type;
 
-    public Item(final Builder builder) {
+    public Product(final Builder builder) {
         this.id = builder.id;
         this.count = builder.count;
         this.price = builder.price;
@@ -20,15 +20,15 @@ public class Item {
     }
 
     public static Builder newFoodItemBuilder() {
-        return new Builder(ItemType.FOOD);
+        return new Builder(ProductType.FOOD);
     }
 
     public static Builder newElectronicsItemBuilder() {
-        return new Builder(ItemType.ELECTRONICS);
+        return new Builder(ProductType.ELECTRONICS);
     }
 
     public static Builder newFurnitureItemBuilder() {
-        return new Builder(ItemType.FURNITURE);
+        return new Builder(ProductType.FURNITURE);
     }
 
     public String getId() {
@@ -43,7 +43,7 @@ public class Item {
         return price;
     }
 
-    public ItemType getType() {
+    public ProductType getType() {
         return type;
     }
 
@@ -51,9 +51,9 @@ public class Item {
         private String id;
         private int count;
         private BigDecimal price;
-        private ItemType type;
+        private final ProductType type;
 
-        public Builder(ItemType type) {
+        public Builder(ProductType type) {
             this.type = type;
         }
 
@@ -72,8 +72,18 @@ public class Item {
             return this;
         }
 
-        public Item build() {
-            return new Item(this);
+        public Product build() {
+            return new Product(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "product{" +
+                "id='" + id + '\'' +
+                ", count=" + count +
+                ", price=" + price +
+                ", type=" + type +
+                '}';
     }
 }

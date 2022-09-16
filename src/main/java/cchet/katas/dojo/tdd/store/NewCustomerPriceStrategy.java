@@ -4,9 +4,8 @@ import java.math.BigDecimal;
 
 public class NewCustomerPriceStrategy implements FinalPriceCalculatorStrategy{
 
-
     @Override
-    public BigDecimal calculate(Item item, Customer customer) {
+    public BigDecimal calculate(Product product, Customer customer) {
         return null;
     }
 }

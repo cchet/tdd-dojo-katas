@@ -5,61 +5,47 @@ import java.util.*;
 
 public class BillCalculator {
 
-    private static final List<FinalPriceCalculatorStrategy> CALCULATORS = List.of(
-            new NewCustomerPriceStrategy(),
-            new ShortTermCustomerPriceStrategy(),
-            new LongTermCustomerPriceStrategy()
-    );
+    private static final TaxCalculator taxCalculator = new TaxCalculator();
 
-    private final Set<Item> items;
+    private final Set<Product> products;
 
     private final Customer customer;
 
-    BillCalculator(Set<Item> items, Customer customer) {
-        this.items = items;
+    BillCalculator(Set<Product> products, Customer customer) {
+        this.products = products;
         this.customer = customer;
     }
 
-    public static BillCalculator of(final Set<Item> items, final Customer customer) {
-        return new BillCalculator(items, customer);
+    public static BillCalculator of(final Set<Product> products, final Customer customer) {
+        return new BillCalculator(products, customer);
     }
 
     public Bill calculateBill() {
-        final Map<Item, BigDecimal> successfulItems = new HashMap<>();
-        final Map<Exception, List<Item>> failedItems = new HashMap<>();
+        final Map<Product, BigDecimal> successProducts = new HashMap<>();
+        final Map<Exception, List<Product>> errorProducts = new HashMap<>();
         BigDecimal sum = new BigDecimal("0.00");
 
-        for (final var item : items             ) {
+        for (final var product : products) {
             try {
-                final BigDecimal finalPrice = calculateFinalPrice(item);
+                final BigDecimal finalPrice = calculateProductsFinalPrice(product);
                 sum = sum.add(finalPrice);
-                successfulItems.put(item, finalPrice);
+                successProducts.put(product, finalPrice);
             } catch (Exception e) {
-                failedItems.computeIfAbsent(e, t -> new LinkedList<>());
-                failedItems.get(e).add(item);
+                errorProducts.computeIfAbsent(e, t -> new LinkedList<>());
+                errorProducts.get(e).add(product);
             }
         }
 
         return Bill.newBuilder()
-                .sum(sum)
-                .items(items)
-                .successItems(successfulItems)
-                .errorItems(failedItems)
+                .price(sum)
+                .customer(customer)
+                .products(products)
+                .successProducts(successProducts)
+                .errorProducts(errorProducts)
                 .build();
     }
 
-    private BigDecimal calculateFinalPrice(final Item item) {
-        return CALCULATORS.stream()
-                .map(c -> c.calculate(item, customer))
-                .filter(Objects::nonNull)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
-
-    public Set<Item> getItems() {
-        return items;
-    }
-
-    public Customer getCustomer() {
-        return customer;
+    private BigDecimal calculateProductsFinalPrice(final Product product) {
+        return product.getPrice().add(taxCalculator.calculateTax(product.getPrice(), product.getType().taxRate));
     }
 }

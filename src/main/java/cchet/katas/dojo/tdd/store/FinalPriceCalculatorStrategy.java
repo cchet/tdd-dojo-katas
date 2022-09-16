@@ -4,5 +4,5 @@ import java.math.BigDecimal;
 
 public interface FinalPriceCalculatorStrategy {
 
-    BigDecimal calculate(Item item, Customer customer);
+    BigDecimal calculate(Product product, Customer customer);
 }

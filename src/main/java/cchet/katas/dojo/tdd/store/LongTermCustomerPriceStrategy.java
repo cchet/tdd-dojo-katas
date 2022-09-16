@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class LongTermCustomerPriceStrategy implements FinalPriceCalculatorStrategy{
 
     @Override
-    public BigDecimal calculate(Item item, Customer customer) {
+    public BigDecimal calculate(Product product, Customer customer) {
         return null;
     }
 }
