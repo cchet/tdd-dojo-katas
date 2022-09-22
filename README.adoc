@@ -2,23 +2,50 @@
 
 This repository holds the sources for the TDD Dojo Kata's for practising TDD.
 
-== Description
+== What is TDD?
 
-This application represents a simple Store where a bill can be calculated for several products.
-This application can only be executed via unit tests and does ont need any runtime environment.
-There are junit test class skeletons where the requirements are documented via Java comments.
+TDD (Test-Driven-Development) is a software development technique, where the developers at first specify the tests,
+and then implement the code to satisfy the specified tests. The developers consider the requirements and edge cases more,
+by specifying the tests at first, rather than by implementing the code and test after.
 
-Developers need to implement the requirements with a TDD approach.
+TDD in common encourages developers to use more simple design and inspires confidence, because the code is well tested.
 
-The unit tests are written with `JUnit5` and can be asserted with `AssertJ`.
+TDD lifecycle:
 
-=== Setup
+. Add a test +
+Specify and implement the test first
+. Run all tests +
+Run all the tests, and see the newly specified test failing for expected reasons
+. Write the simplest code that passes the new test +
+Write nothing more but just the simplest solution to satisfy the requirement of the test
+. All tests should now pass +
+Run all the tests and refactor the code until the test has been satisfied and no existing and already satisfied tests fail
+. Refactor as needed +
+Refactor the code for better readability, and after each refactoring step run all the tests again and see if something breaks
+. Repeat the steps +
+Repeat these steps for each new functionality needed
+
+As you can see, TDD is not hard to understand and not hard to achieve, so give it a try and see how it feels.
+
+== Setup
 
 You will need the following tooling installed to get the project set up.
 
 * Maven 3.x
 * Java 17
 * IDE of your choice
+
+If you want to keep the implementations you made, then just fork this repository.
+
+== Kata Description
+
+This application represents a simple Store where a bill can be calculated for several products.
+This application can only be executed via unit tests and does ont need any specific runtime environment.
+There are junit test class skeletons where the requirements are documented via Java comments.
+
+Developers need to implement the requirements with a TDD approach.
+
+The unit tests are written with `JUnit5` and can be asserted with `AssertJ`.
 
 == Scenario
 
@@ -36,7 +63,7 @@ Unfortunately, the developer has left, and now it's up to you to finish the Job.
 
 Work through the test classes and implement the documented requirements with TDD.
 Write at least one test for each requirement and only provide the necessary new code or refactoring to satisfy
-the single requirement, even if you have to refactor your own code on the next requirement.
+the single requirement, even if you have to refactor your own code by implementing the following requirements.
 
 == Recommendations
 
@@ -50,8 +77,8 @@ I recommend the naming scheme `then_when` e.g.:
 * `constraintViolated_whenFoodProductCountIsLargerThan300`
 
 Additionally, you can structure the test with nested classes. +
-The following code snipped shows nested test classes which would lead to an error message
-formatted as `ProductTest$CommonTest$IdTest.throwsIllegalArgumentException_whenIdIsNull`.
+The following code snipped shows nested test classes which would lead to a test name
+formatted as `ProductTest$CommonTest$IdTest.throwsIllegalArgumentException_whenNull`.
 
 [source,java]
 ----
@@ -64,7 +91,7 @@ class ProductTest {
         class IdTest {
 
             @Test
-            void throwsIllegalArgumentException_whenIdIsNull() {
+            void throwsIllegalArgumentException_whenNull() {
 
             }
         }
